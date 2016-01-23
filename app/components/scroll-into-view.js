@@ -5,10 +5,8 @@ export default Ember.Component.extend({
   didInsertElement() {
     var _this = this.element;
     var _buffer = this.get('buffer');
-    var bottom_of_object = $(_this).offset().top + $(_this).outerHeight() + _buffer;
-
-
     $(window).scroll(function() {
+      var bottom_of_object = $(_this).offset().top + $(_this).outerHeight() + _buffer;
       var bottom_of_window = $(window).scrollTop() + $(window).height() + $(".scroll").scrollTop();
       var offset = (bottom_of_object - bottom_of_window) / $(_this).outerHeight();
       var opacity = 1;
