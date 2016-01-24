@@ -6,7 +6,6 @@ export default Ember.Component.extend({
       var _component = this;
       var _this = this.element;
       $(window).scroll(function(e) {
-        console.log(!_component.get('stickTop'))
         if ($(window).height() - $(window).scrollTop() > 50 && !_component.get('stickTop')) {
           $(_this).css({
             'overflow':'hidden'

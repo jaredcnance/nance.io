@@ -2,31 +2,38 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   classNames: ['scroll-into-view'],
+  persistVisibility: false,
   didInsertElement() {
-    var _this = this.element;
+
+    var _this = this;
+    var _element = this.element;
     var _buffer = this.get('buffer');
+
     $(window).scroll(function() {
-      var bottom_of_object = $(_this).offset().top + $(_this).outerHeight() + _buffer;
+      var bottom_of_object = $(_element).offset().top + $(_element).outerHeight() + _buffer;
       var bottom_of_window = $(window).scrollTop() + $(window).height() + $(".scroll").scrollTop();
-      var offset = (bottom_of_object - bottom_of_window) / $(_this).outerHeight();
+      var offset = (bottom_of_object - bottom_of_window) / $(_element).outerHeight();
       var opacity = 1;
-      // if(_this.id === "ember468"){
-      //   console.log('bottom_of_window',bottom_of_window);
-      //   console.log('bottom_of_object',bottom_of_object);
-      // }
-      if(offset < 1)
-      {
-        if(offset > 0){
+      var persistVisibility = _this.get('persistVisibility');
+
+      if (!persistVisibility) {
+        if (offset > 0 && offset < 1) {
           opacity = opacity - offset;
+        } else {
+          if(offset > 0){
+            opacity = 0;
+          }
         }
+
+        $(_element).css({
+          'opacity': opacity,
+          'transform': 'scale(' + opacity + ')'
+        });
       }
-      else{
-        opacity = 0;
+      if (offset < 0) {
+        _this.set('persistVisibility', true);
       }
-      $(_this).css({
-        'opacity': opacity,
-        'transform': 'scale('+opacity+')'
-      });
+
     });
   }
 });
