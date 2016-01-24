@@ -282,9 +282,15 @@ body {
   background-color: #5B4A99;
 }
 .ui.fourteen.column.centered.grid.forced {
-  width: 50%;
+  width: 100%;
   margin-left: 50%;
   transform: translateX(-50%);
+}
+.forced .ui.basic.segment {
+    float: left;
+    width: 50%;
+    margin-top: 0em;
+    min-width:350px;
 }
 .ui.fluid.segment {
   width: 100%;
@@ -324,4 +330,8 @@ img.ui.upwork.avatar.image {
 }
 img.ui.upwork.avatar.image:hover{
   opacity:1;
+}
+.ui.cards {
+    margin-left: 20% !important;
+    margin-right: 20% !important;
 }
