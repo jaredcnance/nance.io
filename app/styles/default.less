@@ -1,0 +1,337 @@
+.background {
+  background-image: url(background.jpg);
+  background-size: cover;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.background .overlay {
+  background-color: rgba(100, 150, 255, 0.5);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: -1;
+}
+.background .title h1 {
+  color: #FFF;
+  font-size: 2em;
+  text-align: left;
+  padding-top: 0.2em;
+  padding-left: 0.5em;
+}
+.background .tagline {
+  line-height: 0.9em;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 5em;
+  color: #FFF;
+  font-weight: bold;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+}
+.background .tagline .extra {
+  font-size: 3rem;
+  color: rgba(0, 0, 0, 0.9);
+  margin-top: 40px;
+  text-align: right;
+}
+body {
+  overflow-x: scroll !important;
+}
+.body {
+  position: absolute;
+  top: 100vh;
+  left: 0;
+  right: 0;
+  height: calc(~"100vh - 50px");
+  background-color: #FFF;
+  z-index: 100000;
+  overflow-y: hidden;
+}
+.body .scroll {
+  overflow-y: scroll;
+  height: 100%;
+  margin-top: 20px;
+}
+.body .header h1 {
+  letter-spacing: 0.2em;
+  padding-top: 3em;
+  text-align: center;
+}
+.scroll-into-view {
+  opacity: 0;
+  transition: ease;
+}
+.ui.twelve.column.centered.grid {
+  margin-top: 4em;
+}
+.image {
+  height: 250px;
+}
+.ui.three.cards {
+  width: 50%;
+}
+.ui.three.cards > .card {
+  min-width: 200px;
+}
+.ui.fourteen.column.centered.grid {
+  margin-top: 100px;
+}
+.image .overlay {
+  padding: 20px;
+}
+.image .overlay .content {
+  padding: 10px;
+  padding-top: 25%;
+}
+.image .overlay .content .header {
+  font-weight: bold;
+  font-size: 1.28571429em;
+  line-height: 1.2857em;
+}
+.plant-monitor .image {
+  background-image: url(plant-monitor.png) !important;
+  background-size: 150% !important;
+  background-position: center !important;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.plant-monitor .image .overlay {
+  opacity: 0;
+  background-color: rgb(222,198,92);
+  height: 100%;
+  width: 100%;
+  transition: 0.3s;
+}
+.plant-monitor:hover > .image {
+  background-size: 250% !important;
+}
+.plant-monitor:hover > .image .overlay {
+  opacity: 0.9;
+  background-color: rgb(222,198,92);
+}
+.andon .image {
+  background-image: url(andon.png) !important;
+  background-size: 200% !important;
+  background-position: center !important;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.andon .image .overlay {
+  opacity: 0;
+  background-color: #466094;
+  height: 100%;
+  width: 100%;
+  transition: 0.3s;
+  color: #FFF;
+}
+.andon:hover > .image {
+  background-size: 300% !important;
+  background-position: top left !important;
+}
+.andon:hover > .image .overlay {
+  opacity: 0.9;
+  background-color: #466094;
+}
+.dashboard .image {
+  background-image: url(dashboard.png) !important;
+  background-size: 180% !important;
+  background-position: top left !important;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.dashboard .image .overlay {
+  opacity: 0;
+  background-color: #5B4A99;
+  height: 100%;
+  width: 100%;
+  transition: 0.3s;
+  color: #FFF;
+}
+.dashboard:hover > .image {
+  background-size: 180% !important;
+  background-position: top right !important;
+}
+.dashboard:hover > .image .overlay {
+  opacity: 0.9;
+  background-color: #5B4A99;
+}
+.rfid .image {
+  background-image: url(rfid.jpg) !important;
+  background-size: 100% !important;
+  background-position: center !important;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.rfid .image .overlay {
+  opacity: 0;
+  background-color: #466094;
+  height: 100%;
+  width: 100%;
+  transition: 0.3s;
+  color: #FFF;
+}
+.rfid:hover > .image {
+  background-size: 180% !important;
+}
+.rfid:hover > .image .overlay {
+  opacity: 0.9;
+  background-color: #466094;
+}
+.travel .image {
+  background-image: url(travel.png) !important;
+  background-size: 150% !important;
+  background-position: left !important;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.travel .image .overlay {
+  opacity: 0;
+  background-color: rgb(222,198,92);
+  height: 100%;
+  width: 100%;
+  transition: 0.3s;
+  color: #000;
+}
+.travel:hover > .image {
+  background-size: 200% !important;
+  background-position: right !important;
+}
+.travel:hover > .image .overlay {
+  opacity: 0.9;
+  background-color: rgb(222,198,92);
+}
+.web .image {
+  background-image: url(web.png) !important;
+  background-size: 100% !important;
+  background-size: 75% !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.web .image .overlay {
+  opacity: 0;
+  background-color: #5B4A99;
+  height: 100%;
+  width: 100%;
+  transition: 0.3s;
+  color: #FFF;
+}
+.web:hover > .image {
+  background-size: 150% !important;
+  background-position: center !important;
+}
+.web:hover > .image .overlay {
+  opacity: 0.9;
+  background-color: #5B4A99;
+}
+.pattern .image {
+  background-image: url(pattern.png) !important;
+  background-size: 75% !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.pattern .image .overlay {
+  opacity: 0;
+  background-color: #5B4A99;
+  height: 100%;
+  width: 100%;
+  transition: 0.3s;
+  color: #FFF;
+}
+.pattern:hover > .image {
+  background-size: 150% !important;
+  background-position: center !important;
+}
+.pattern:hover > .image .overlay {
+  opacity: 0.9;
+  background-color: #5B4A99;
+}
+.commerce .image {
+  background-image: url(commerce.png) !important;
+  background-size: 75% !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.commerce .image .overlay {
+  opacity: 0;
+  background-color: #5B4A99;
+  height: 100%;
+  width: 100%;
+  transition: 0.3s;
+  color: #FFF;
+}
+.commerce:hover > .image {
+  background-size: 150% !important;
+  background-position: center !important;
+}
+.commerce:hover > .image .overlay {
+  opacity: 0.9;
+  background-color: #5B4A99;
+}
+.ui.fourteen.column.centered.grid.forced {
+  width: 100%;
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+.forced .ui.basic.segment {
+  float: left;
+  width: 50%;
+  margin-top: 0;
+  min-width: 350px;
+}
+.ui.fluid.segment {
+  width: 100%;
+  text-align: left;
+}
+.sub.header {
+  max-width: 800px;
+  margin-left: 50% !important;
+  transform: translateX(-50%);
+  font-size: 1em !important;
+  line-height: 1.5em !important;
+  text-align: justify;
+}
+.ui.inverted.vertical.footer.segment {
+  margin-top: 100px;
+}
+.ui.container {
+  margin-bottom: 50px;
+}
+.github {
+  margin-top: 50px;
+}
+.github .item {
+  text-align: center;
+}
+i.inverted.ui.huge.github.icon {
+  transition: 0.3s;
+}
+i.inverted.ui.huge.github.icon:hover {
+  color: #FFF;
+}
+.upwork {
+  text-align: center;
+}
+img.ui.upwork.avatar.image {
+  height: 3.5em;
+  width: 3.5em;
+  transform: translateX(-15%);
+  opacity: 0.6;
+}
+img.ui.upwork.avatar.image:hover {
+  opacity: 1;
+}
+.ui.cards {
+  margin-left: 20% !important;
+  margin-right: 20% !important;
+}
