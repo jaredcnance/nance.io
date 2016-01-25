@@ -1,4 +1,4 @@
 class WebsiteResource < JSONAPI::Resource
   attributes :url
-  relationship :posts, to: :many
+  relationship :website_visits, to: :many
 end
