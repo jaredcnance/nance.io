@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20160125144914) do
 
   create_table "websites", force: :cascade do |t|
     t.string   "url"
+    t.string   "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
