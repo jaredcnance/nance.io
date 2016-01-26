@@ -1,0 +1,17 @@
+<div class="ui fourteen column centered grid">
+<div class="ui middle aligned divided list">
+  {{#each model as |website|}}
+    <div class="item">
+      <div class="right floated content">
+        <a href= {{website.url}} class="ui button">Go</a>
+      </div>
+      <div class="header">
+        {{website.title}}
+      </div>
+      <div class="content">
+        {{website.url}}
+      </div>
+    </div>
+  {{/each}}
+</div>
+</div>
