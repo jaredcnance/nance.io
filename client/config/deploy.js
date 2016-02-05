@@ -9,10 +9,14 @@ module.exports = function(deployTarget) {
     build: {},
     redis: {
       allowOverwrite: true,
-      keyPrefix: 'nance:index'
+      keyPrefix: 'nance:index',
+      host: 'ec2-54-227-246-40.compute-1.amazonaws.com',
+      port: '15009',
+      password: 'p6mppjonhutllh4sjngemdq0mqt'
     },
     s3: {
-      prefix: 'nance'
+      prefix: 'nance',
+      filePattern: '**/*.{js,css,png,gif,ico,jpg,map,xml,txt,svg,swf,eot,ttf,woff,woff2}'
     }
   };
   if (VALID_DEPLOY_TARGETS.indexOf(deployTarget) === -1) {
@@ -21,45 +25,26 @@ module.exports = function(deployTarget) {
 
   if (deployTarget === 'dev') {
     ENV.build.environment = 'development';
-    ENV.redis.url = process.env.REDIS_URL || 'redis://0.0.0.0:6379/';
+    ENV.redis.url = 'redis://0.0.0.0:6379/';
     ENV.plugins = ['build', 'redis']; // only care about deploying index.html into redis in dev
   }
 
   if (deployTarget === 'qa' || deployTarget === 'prod') {
     ENV.build.environment = 'production';
-    ENV.s3.accessKeyId = process.env.AWS_KEY;
-    ENV.s3.secretAccessKey = process.env.AWS_SECRET;
-    ENV.s3.bucket = /* YOUR S3 BUCKET NAME */;
-    ENV.s3.region = /* YOUR S3 REGION */;
+    ENV.s3.accessKeyId = 'AKIAJH3XKIAZJYDRTSAQ';
+    ENV.s3.secretAccessKey = 'jHpvECk84F98m52wtuqzHL93hq11RoXEAgk0WqbC';
+    ENV.s3.bucket = 'nance-io';
+    ENV.s3.region = 'us-west-2';
   }
 
   if (deployTarget === 'qa') {
-    ENV.redis.url = process.env.QA_REDIS_URL;
+
   }
 
   if (deployTarget === 'prod') {
-    ENV.redis.url = process.env.PROD_REDIS_URL;
+
   }
 
   return ENV;
 
-  /* Note: a synchronous return is show above, but ember-cli-deploy
-   * does support returning a promise, in case you need to get any of
-   * your configuration asynchronously. e.g.
-   *
-   *    var Promise = require('ember-cli/lib/ext/promise');
-   *    return new Promise(function(resolve, reject){
-   *      var exec = require('child_process').exec;
-   *      var command = 'heroku config:get REDISTOGO_URL --app my-app-' + deployTarget;
-   *      exec(command, function (error, stdout, stderr) {
-   *        ENV.redis.url = stdout.replace(/\n/, '').replace(/\/\/redistogo:/, '//:');
-   *        if (error) {
-   *          reject(error);
-   *        } else {
-   *          resolve(ENV);
-   *        }
-   *      });
-   *    });
-   *
-   */
 }
