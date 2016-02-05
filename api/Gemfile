@@ -9,6 +9,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'sinatra', require: false
 gem 'slim'
+gem 'redis'
 
 group :development do
   gem 'guard-rspec', require: false
