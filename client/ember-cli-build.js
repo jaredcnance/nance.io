@@ -8,8 +8,10 @@ module.exports = function(defaults) {
       paths: [
         'bower_components/semantic-ui'
       ]
+    },
+    fingerprint: {
+      prepend: 'https://d2koe8ee9up91l.cloudfront.net/nance/'
     }
-
   });
 
   // Use `app.import` to add additional libraries to the generated

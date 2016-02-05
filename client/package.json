@@ -1,7 +1,7 @@
 {
   "name": "nance",
   "version": "0.0.0",
-  "description": "Small description for pure-client goes here",
+  "description": "nance.io package",
   "private": true,
   "directories": {
     "doc": "doc",
