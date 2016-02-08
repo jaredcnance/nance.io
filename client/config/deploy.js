@@ -10,9 +10,9 @@ module.exports = function(deployTarget) {
     redis: {
       allowOverwrite: true,
       keyPrefix: 'nance:index',
-      host: 'ec2-54-227-246-40.compute-1.amazonaws.com',
-      port: '15009',
-      password: 'p6mppjonhutllh4sjngemdq0mqt'
+      host: process.env.REDIS_HOST,
+      port: process.env.REDIS_PORT,
+      password: process.env.REDIS_PASSWORD
     },
     s3: {
       prefix: 'nance',
@@ -31,8 +31,8 @@ module.exports = function(deployTarget) {
 
   if (deployTarget === 'qa' || deployTarget === 'prod') {
     ENV.build.environment = 'production';
-    ENV.s3.accessKeyId = 'AKIAJH3XKIAZJYDRTSAQ';
-    ENV.s3.secretAccessKey = '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';
+    ENV.s3.accessKeyId = process.env.S3_ACCESS_KEY;
+    ENV.s3.secretAccessKey = process.env.S3_SECRET;
     ENV.s3.bucket = 'nance-io';
     ENV.s3.region = 'us-west-2';
   }
