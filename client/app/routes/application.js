@@ -9,5 +9,13 @@ export default Ember.Route.extend({
         controller.set('showMenu', true);
       }
     });
+  },
+  actions:{
+    toggleMenu: function(direction) {
+      $('.ui.sidebar')
+      .sidebar('setting', 'transition', 'overlay')
+      .sidebar('setting', 'direction', 'right')
+      .sidebar('toggle');
+    }
   }
 });
