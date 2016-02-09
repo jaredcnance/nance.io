@@ -1,11 +1,12 @@
-html, body {
+html,
+body {
   height: 100%;
   width: 100%;
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
 }
-::-webkit-scrollbar {
-    display: none;
+ ::-webkit-scrollbar {
+  display: none;
 }
 .background {
   background-image: url(background.jpg);
@@ -344,5 +345,30 @@ img.ui.upwork.avatar.image:hover {
   margin-right: 20% !important;
 }
 .ui.middle.aligned.divided.list {
-    width: 50%;
+  width: 50%;
+}
+.left.aligned {
+  text-align: left;
+}
+.right.aligned {
+  text-align: right;
+}
+.link.header {
+  padding-top: 0.5em;
+}
+.fade.right.aligned {
+  min-height: 100px !important;
+  padding-top: 10px;
+}
+.clickable {
+  opacity: 0.5 !important;
+  cursor: pointer;
+  transition: 0.5s;
+}
+.clickable:hover {
+  opacity: 1.0 !important;
+}
+.hidden {
+  display: none;
+  transition: 0.5s;
 }

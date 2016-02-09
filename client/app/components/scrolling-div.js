@@ -20,6 +20,8 @@ export default Ember.Component.extend({
               'top':'50px'
             })
             _component.set('stickTop', true);
+
+            _component.sendAction('stopScrolling');
           }
         }
       });

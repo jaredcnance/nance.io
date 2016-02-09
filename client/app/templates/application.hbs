@@ -1,7 +1,14 @@
 <div class="background">
   <div class="overlay"></div>
   <div class="title">
-    <h1>jared.nance.io</h1>
+    <h1 class="ui left floated header">
+      jared.nance.io
+    </h1>
+    <div class="fade right aligned">
+      <a class="ui big icon {{unless showMenu "hidden"}}">
+        <i class="big clickable inverted sidebar icon"></i>
+      </a>
+  </div>
   </div>
   <div class="tagline">
     Full Stack Development.
@@ -11,7 +18,7 @@
   </div>
 </div>
 <div class="body">
-  {{#scrolling-div class="scroll" }}
+  {{#scrolling-div class="scroll" stopScrolling=(action "stopScrolling")}}
     {{outlet}}
     <div class="ui inverted vertical footer segment">
       <div class="ui container">
