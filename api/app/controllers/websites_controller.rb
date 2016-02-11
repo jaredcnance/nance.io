@@ -23,10 +23,13 @@ class WebsitesController < JSONAPI::ResourceController
     website.title = attrs['title']
 
     tags.each do |tag|
-      website.tags << Tag.find(tag['id'])
+      website_tag = WebsiteTag.create(occurrences tag['occurences'])
+      website_tag.tag = Tag.find(tag['id'])
+      website_tag.website = website
     end
 
     website.save!
+    website_tag.save!
     website.add_visit
     render json: JSONAPI::ResourceSerializer.new(WebsiteResource).serialize_to_hash(WebsiteResource.new(website, nil))
   end
