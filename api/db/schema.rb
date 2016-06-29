@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20160211132907) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "website_tags", id: false, force: :cascade do |t|
+  create_table "website_tags", force: :cascade do |t|
     t.integer "website_id"
     t.integer "tag_id"
     t.integer "occurrences"

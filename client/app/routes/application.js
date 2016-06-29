@@ -4,6 +4,7 @@ export default Ember.Route.extend({
 
   setupController(controller, model) {
     this._super(...arguments);
+    controller.set('showMenu', false);
     controller.set('actions', {
       stopScrolling: () => {
         controller.set('showMenu', true);

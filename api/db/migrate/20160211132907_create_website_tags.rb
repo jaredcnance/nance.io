@@ -1,6 +1,6 @@
 class CreateWebsiteTags < ActiveRecord::Migration
   def self.up
-    create_table :website_tags, :id => false do |t|
+    create_table :website_tags do |t|
       t.integer :website_id
       t.integer :tag_id
       t.integer :occurrences

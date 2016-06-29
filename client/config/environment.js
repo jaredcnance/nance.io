@@ -14,8 +14,8 @@ module.exports = function(environment) {
     },
 
     APP: {
-      API_HOST: 'http://localhost:3000',
-      API_NAMESPACE: '',
+      // API_HOST: 'http://localhost:3000',
+      // API_NAMESPACE: '',
     }
   };
 
@@ -40,7 +40,8 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-
+    ENV.APP.API_HOST = 'http://www.nance.io';
+    ENV.APP.API_NAMESPACE = '';
   }
 
   return ENV;
