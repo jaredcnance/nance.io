@@ -1,54 +1,81 @@
-<div class="background">
-  <div class="overlay"></div>
-  <div class="title">
-    <h1>jared.nance.io</h1>
-  </div>
-  <div class="tagline">
-    Full Stack Development.
-    <div class="extra">
-      Analytics from the ground up.
+<div class="pusher">
+  <div class="background">
+    <div class="overlay"></div>
+    <div class="title">
+      <h1 class="ui left floated header">
+        jared.nance.io
+      </h1>
+      <div class="fade right aligned">
+        <a class="ui big icon {{unless showMenu "hidden"}}" {{action "toggleMenu"}}>
+          <i class="big clickable inverted sidebar icon"></i>
+        </a>
+      </div>
+    </div>
+    <div class="tagline">
+      Full Stack Development.
+      <div class="extra">
+        Analytics from the ground up.
+      </div>
     </div>
   </div>
-</div>
-<div class="body">
-  {{#scrolling-div class="scroll" }}
-    {{outlet}}
-    <div class="ui inverted vertical footer segment">
-      <div class="ui container">
-        <div class="ui stackable inverted divided equal height stackable grid">
-          <div class="three wide column">
-            <h4 class="ui inverted header">About This Site</h4>
-            <div class="ui inverted link list">
-              <div class="item">Ember JS</div>
-              <div class="item">LESS</div>
-              <div class="item">Semantic UI</div>
-              <div class="item">Rails</div>
-              <div class="item">PostgreSql</div>
-              <div class="item">JsonAPI Resources</div>
-              <div class="item">Hosted on Heroku</div>
+  <div class="body">
+    {{#scrolling-div class="scroll" stopScrolling=(action "stopScrolling")}}
+      {{outlet}}
+      <div class="ui inverted vertical footer segment">
+        <div class="ui container">
+          <div class="ui stackable inverted divided equal height stackable grid">
+            <div class="three wide column">
+              <h4 class="ui inverted header">About This Site</h4>
+              <div class="ui inverted link list">
+                <div class="item">Ember JS</div>
+                <div class="item">LESS</div>
+                <div class="item">Semantic UI</div>
+                <div class="item">Rails</div>
+                <div class="item">PostgreSql</div>
+                <div class="item">JsonAPI Resources</div>
+                <div class="item">Lightning Deployment</div>
+              </div>
             </div>
-          </div>
-          <div class="three wide column">
-            <div class="ui inverted link list github">
-              <a href="https://github.com/jaredcnance/nance.io" class="item">
-                <i class="inverted ui huge github icon"></i>
-              </a>
+            <div class="three wide column">
+              <div class="ui inverted link list github">
+                <a href="https://github.com/jaredcnance/nance.io" class="item">
+                  <i class="inverted ui huge github icon"></i>
+                </a>
+              </div>
+              <div class="ui inverted link list upwork">
+                <a href="https://www.upwork.com/freelancers/~01c370907d42bf0a5c" class="item">
+                  <img class="ui upwork avatar image" src="https://pbs.twimg.com/profile_images/603630694699401216/BeSJ3aet.png">
+                </a>
+              </div>
             </div>
-            <div class="ui inverted link list upwork">
-              <a href="https://www.upwork.com/freelancers/~01c370907d42bf0a5c" class="item">
-                <img class="ui upwork avatar image" src="https://pbs.twimg.com/profile_images/603630694699401216/BeSJ3aet.png">
-              </a>
-            </div>
-          </div>
-          <div class="seven wide column">
-            <h4 class="ui inverted header">Contact</h4>
-            <div class="ui inverted link list">
-              <a href="#" class="item">(816) 446-9841</a>
-              <a href="mailto:jaredcnance@gmail.com" class="item">JaredCNance@gmail.com</a>
+            <div class="seven wide column">
+              <h4 class="ui inverted header">Contact</h4>
+              <div class="ui inverted link list">
+                <a href="#" class="item">(816) 446-9841</a>
+                <a href="mailto:jaredcnance@gmail.com" class="item">JaredCNance@gmail.com</a>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  {{/scrolling-div}}
+    {{/scrolling-div}}
+  </div>
 </div>
+{{#ui-sidebar class="right inverted vertical menu" }}
+<div class="item">
+  {{#link-to "application" class="item"}}
+    Home
+  {{/link-to}}
+</div>
+<div class="item">
+  <a class="item">About Me</a>
+</div>
+<div class="item">
+  <a class="item">Public APIs</a>
+  <div class="menu">
+    {{#link-to "reading-list" class="item"}}
+      Chrome Read-It
+    {{/link-to}}
+  </div>
+</div>
+{{/ui-sidebar}}

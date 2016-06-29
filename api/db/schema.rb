@@ -11,16 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160127020532) do
+ActiveRecord::Schema.define(version: 20160211132907) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "tags", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "api_key"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "website_tags", force: :cascade do |t|
+    t.integer "website_id"
+    t.integer "tag_id"
+    t.integer "occurrences"
+  end
+
+  add_index "website_tags", ["website_id", "tag_id"], name: "index_website_tags_on_website_id_and_tag_id", using: :btree
 
   create_table "website_visits", force: :cascade do |t|
     t.integer  "website_id"
@@ -35,6 +49,7 @@ ActiveRecord::Schema.define(version: 20160127020532) do
     t.string   "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "favIconUrl"
   end
 
   add_foreign_key "website_visits", "websites", on_delete: :cascade

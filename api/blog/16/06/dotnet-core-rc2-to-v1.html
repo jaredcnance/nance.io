@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Jared Nance - Blog</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href='https://fonts.googleapis.com/css?family=Source+Serif+Pro' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="../../assets/app.css">
+  <!-- disqus -->
+  <script>
+    var disqus_developer = 1;
+  </script>
+  <!-- font-awesome -->
+  <script src="https://use.fontawesome.com/2ca9fdb282.js"></script>
+  <!-- highlight js-->
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/styles/solarized-dark.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+
+  <script src='../../assets/app.js'></script>
+
+</head>
+
+<body>
+  <h1 class="header">
+    .Net Core - RC2 to v1.0
+    <div class="sub-header">by Jared Nance -- <i>16/06/27</i></div>
+  </h1>
+  <div class="container">
+    <div>
+      <h4 class="header">It's finally here!</h4>
+      <p>
+        Just to be clear, although this is my first post, I'm not referring to my blog.
+        For those who are unaware, .Net Core 1.0.0 was <a target="_blank" href="https://github.com/dotnet/core/releases/tag/1.0.0">officially released today</a>.
+        Below, I have documented my upgrade process from RC2 to RTM and any issues I encountered.
+        If you were using RC1 and upgraded to RC2, the process is pretty similar, but there are far fewer breaking API changes.
+        <p>
+          <b>Note:</b> If you haven't already upgraded to RC2, a lot of things have changed which I won't be covering here. It has been pretty well documented:
+          <a target="_blank" href="https://docs.asp.net/en/latest/migration/rc1-to-rc2.html">here</a>,
+          <a target="_blank" href="https://github.com/aspnet/Home/issues/1381">here</a>,
+          <a target="_blank" href="https://wildermuth.com/2016/05/17/Converting-an-ASP-NET-Core-RC1-Project-to-RC2">here</a>, and elsewhere.
+        </p>
+      </p>
+      <h4 class="header">RC2 to v1.0.0 (RTM)</h4>
+      <p>
+        <b>Installation</b>
+        <ul>
+          <li>Uninstall RC2 - approx 5 min
+            <ul>
+              <li>Microsoft .NET Core 1.0.0 RC2 - Runtime</li>
+              <li>Microsoft .NET Core 1.0.0 RC2 - SDK Preview 1</li>
+              <li>Microsoft .NET Core 1.0.0 RC2 - VS 2015 Tooling Preview 1</li>
+              <li>Microsoft .NET Core 1.0.0 RC2 - Windows Server Hosting</li>
+              <li>Microsoft .NET Version Manager (<i>Note this was an artifact from rc1</i>)</li>
+            </ul>
+          </li>
+          <li>Install <a target="_blank" href="https://www.visualstudio.com/news/releasenotes/vs2015-update3-vs">Visual Studio 2015 Update 3</a> - approx 23 min</li>
+          <li>Install <a target="_blank" href="https://go.microsoft.com/fwlink/?LinkId=817245">Microsoft .NET Core 1.0.0 VS 2015 Tooling Preview 2</a> - approx 3 min</li>
+          <li>(Optional if using VS) Install <a target="_blank" href="https://go.microsoft.com/fwlink/?LinkID=809122">Microsoft .NET Core 1.0.0 - SDK Preview 2</a> - approx 3 min</li>
+          <li>Confirm install by running <code>$ dotnet --version</code> should return <b>1.0.0-preview2-003121</b>
+          <li>Bump the version in <code>global.json</code> to 1.0.0-preview2-003121</li>
+        </ul>
+      </p>
+      <p>
+        <b>Packages</b>
+        <ul>
+          <li>Bump all <b>1.0.0-rc2-</b> dependencies to <b>1.0.0</b> in all <code>project.json</code> files. For me this was quite simple, a "Replace All" of "-rc2-final" with "" in project.json fixed all but a few instances.</li>
+          <li>Bump any <b>1.0.0-preview1-final</b> dependencies to <b>1.0.0-preview2-final</b></li>
+          <li>Run <code>$ dotnet restore</code></li>
+        </ul>
+      </p>
+      <p>
+        <b>Code changes</b>
+        <ul>
+          <li>If you were manually enforcing camelCase JSON responses in your web apps, this is now the default behavior.
+            <pre>
+              <code>
+// Startup.cs
+public void ConfigureServices(IServiceCollection services)
+{
+  ...
+  services.AddMvc()
+     // no longer required
+     // .AddJsonOptions(options =>
+     // {
+     //   options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+     // })
+  ...
+}
+              </code>
+            </pre>
+          </li>
+        </ul>
+      </p>
+      <h4 class="header">Issues</h4>
+      <p>
+        <li>When opening an RC2 project in VS, if you receive the following prompt, you need to upgrade the version referenced by <code>global.json</code> to 1.0.0-preview2-003121
+          <blockquote>
+            The project is configured to use .NET Core SDK version 1.0.0-preview-2-00... which is not installed or cannot be found under the path ...
+          </blockquote>
+        </li>
+        <li>
+          For me, when I ran <code>dotnet restore</code>, I received several package downgrade warnings.
+          So, to be on the safe side, I cleared my NuGet cache by deleting all the folders in <code>C:/Users/me/.nuget/packages/</code>
+          prior to running dotnet restore again.
+        </li>
+        <li>
+          I also encounterred some dependency mismatches that had not been caught by the prior version of the tooling.
+          Specifically, I had several projects referencing different versions of Newtonsoft.Json which gave me the following errors.
+          I was able to correct my <code>project.json</code> files and move on.
+          <blockquote>
+            ...\warning CS8012: Referenced assembly 'MyAssembly, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null' targets a different processor.
+            MyAssembly2	C:\Program Files (x86)\MSBuild\Microsoft\VisualStudio\v14.0\DotNet\Microsoft.DotNet.Common.Targets
+          </blockquote>
+          <blockquote>
+            ...\error CS1705: Assembly 'Microsoft.AspNetCore.Mvc.Formatters.Json' with identity 'Microsoft.AspNetCore.Mvc.Formatters.Json,
+            Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60' uses 'Newtonsoft.Json,
+            Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed' which has a higher version than referenced assembly 'Newtonsoft.Json'
+            with identity 'Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed'
+          </blockquote>
+        </li>
+      </p>
+      <h4 class="header">Conclusion</h4>
+      <p>
+        I'd like to thanks all those who beat me to the punch and documented their experiences as well:
+        <ul>
+          <li><a target="_blank" href="https://docs.asp.net/en/latest/migration/rc2-to-rtm.html">Official Documentation</a></li>
+          <li><a target="_blank" href="https://weblog.west-wind.com/posts/2016/Jun/27/Upgrading-to-ASPNET-Core-RTM-from-RC2">Rick Strahl</a></li>
+          <li><a target="_blank" href="https://wildermuth.com/2016/06/27/Converting-ASP-NET-Core-1-0-RC2-to-RTM-Bits">Shawn Wildermuth</a></li>
+        </ul>
+      </p>
+    </div>
+  </div>
+  <div id="disqus_thread"></div>
+  <div class="links">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fnance.io%2Fblog%2F&text=Just%20Another%20Coders%20Blog&hashtags=javascript&">
+      <i class="fa fa-twitter fa-2x" aria-hidden="true"></i>
+    </a>
+    <br>
+    <a target="_blank" href="https://github.com/jaredcnance">
+      <i class="fa fa-github fa-2x" aria-hidden="true"></i>
+    </a>
+  </div>
+</body>
+
+</html>
